@@ -31,7 +31,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - TRANSMISSION_WEB_HOME=/config/transmission-web-ui
+      - TRANSMISSION_WEB_HOME=/web/transmission-web-ui
       - USER=
       - PASS=
       - WHITELIST=
@@ -41,8 +41,7 @@ services:
       - /lzcapp/var/config:/config
       - /lzcapp/var/downloads:/downloads
       - /lzcapp/var/watch:/watch
-    setup_script: |
-        cp -r /lzcapp/pkg/content/  /config
+      - /lzcapp/pkg/content:/web
 unsupported_platforms:
   - ios
   - android
