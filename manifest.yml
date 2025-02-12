@@ -1,0 +1,48 @@
+lzc-sdk-version: "0.1"
+name: Transmission
+package: cloud.lazycat.app.transmission
+version: 4.0.6
+description: "一个快速、简单且免费的BitTorrent客户端 "
+homepage: https://transmissionbt.com
+author: czyt
+application:
+  subdomain: transmission
+  background_task: true
+  usb_accel: true
+  file_handler:
+    mime:
+      - application/x-magnet
+      - application/x-bittorrent
+    actions:
+      open: /open?file=%u
+  routes:
+    - /=http://transmission.cloud.lazycat.app.transmission.lzcapp:9091/
+  ingress:
+    - protocol: tcp
+      port: 51413
+      service: transmission
+    - protocol: udp
+      port: 51413
+      service: transmission
+services:
+  transmission:
+    image: registry.lazycat.cloud/czyt/linuxserver/transmission:ef8f7d679af199f3
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - TRANSMISSION_WEB_HOME=/config/transmission-web-ui
+      - USER=
+      - PASS=
+      - WHITELIST=
+      - PEERPORT=
+      - HOST_WHITELIST=
+    binds:
+      - /lzcapp/var/config:/config
+      - /lzcapp/var/downloads:/downloads
+      - /lzcapp/var/watch:/watch
+    setup_script: |
+        cp -r /lzcapp/pkg/content/  /config
+unsupported_platforms:
+  - ios
+  - android
