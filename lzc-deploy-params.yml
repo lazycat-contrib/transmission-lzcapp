@@ -1,0 +1,32 @@
+params:
+    - id: enable_auth
+      type: bool
+      name: "enable authentication"
+      description: "enable authentication"
+      default_value: false
+
+    - id: admin_username
+      type: string
+      name: "admin user name"
+      optional: true
+      description: "the admin user for login"
+
+    - id: admin_password
+      type: string
+      name: "admin user password"
+      optional: true
+      description: "the admin user password for login"
+
+locales:
+    zh:
+        enable_auth:
+            name: "启用认证"
+            description: "启用认证"
+
+        admin_username:
+            name: "管理员登录名"
+            description: "管理员的登录名"
+
+        admin_password:
+            name: "管理员密码"
+            description: "管理员密码"
