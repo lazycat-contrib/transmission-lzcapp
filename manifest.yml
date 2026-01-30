@@ -1,6 +1,6 @@
 name: Transmission
 package: cloud.lazycat.app.transmission
-version: 4.0.6
+version: 4.1.0
 min_os_version: 1.3.8
 description: "一个快速、简单且免费的BitTorrent客户端 "
 homepage: https://transmissionbt.com
@@ -26,7 +26,8 @@ application:
           service: transmission
 services:
     transmission:
-        image: registry.lazycat.cloud/czyt/linuxserver/transmission:ef8f7d679af199f3
+      # linuxserver/transmission:4.1.0
+        image: registry.lazycat.cloud/czyt/linuxserver/transmission:390a47c581360da6
         environment:
             - PUID=1000
             - PGID=1000
