@@ -48,3 +48,13 @@ services:
 unsupported_platforms:
     - ios
     - android
+
+
+locales:
+  zh:
+    name: "Transmission"
+    description: "一个快速、简单且免费的BitTorrent客户端"
+
+  en:
+    name: "Transmission"
+    description: "A fast, simple, and free BitTorrent client"
