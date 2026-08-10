@@ -1,41 +1,42 @@
 application:
-    subdomain: transmission
-    background_task: true
-    usb_accel: true
-    file_handler:
-        mime:
-            - application/x-magnet
-            - application/x-bittorrent
-        actions:
-            open: /open?file=%u
-    upstreams:
-        - location: /
-          backend: http://transmission:9091/
-    ingress:
-        - protocol: tcp
-          port: 51413
-          service: transmission
-        - protocol: udp
-          port: 51413
-          service: transmission
+  subdomain: transmission
+  background_task: true
+  usb_accel: true
+  file_handler:
+    mime:
+      - application/x-magnet
+      - application/x-bittorrent
+    actions:
+      open: /open?file=%u
+  upstreams:
+    - location: /
+      backend: http://transmission:9091/
+  ingress:
+    - protocol: tcp
+      port: 51413
+      service: transmission
+    - protocol: udp
+      port: 51413
+      service: transmission
 services:
-    transmission:
-        # docker.io/linuxserver/transmission:version-4.1.0-r0
-        image: registry.lazycat.cloud/czyt/linuxserver/transmission:390a47c581360da6
-        environment:
-            - PUID=1000
-            - PGID=1000
-            - TZ=Etc/UTC
-            - TRANSMISSION_WEB_HOME=/web/transmission-web-ui
+  transmission:
+    # docker.io/linuxserver/transmission:version-4.1.0-r0
+    # upstream: docker.io/linuxserver/transmission:version-4.1.3-r0
+    image: registry.lazycat.cloud/czyt/linuxserver/transmission:acbad31a61ec36b9
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - TRANSMISSION_WEB_HOME=/web/transmission-web-ui
 {{if .U.enable_auth}}
-            - USER={{ .U.admin_username }}
-            - PASS={{.U.admin_password}}
+      - USER={{ .U.admin_username }}
+      - PASS={{.U.admin_password}}
 {{end}}
-            - WHITELIST=
-            - PEERPORT=
-            - HOST_WHITELIST=
-        binds:
-            - /lzcapp/var/config:/config
-            - /lzcapp/var/downloads:/downloads
-            - /lzcapp/var/watch:/watch
-            - /lzcapp/pkg/content:/web
+      - WHITELIST=
+      - PEERPORT=
+      - HOST_WHITELIST=
+    binds:
+      - /lzcapp/var/config:/config
+      - /lzcapp/var/downloads:/downloads
+      - /lzcapp/var/watch:/watch
+      - /lzcapp/pkg/content:/web
