@@ -1,21 +1,21 @@
 params:
     - id: enable_auth
       type: bool
-      name: "enable authentication"
-      description: "enable authentication"
-      default_value: false
+      name: "Enable Authentication"
+      description: "Require a username and password for the web interface"
+      default_value: "false"
 
     - id: admin_username
       type: string
-      name: "admin user name"
+      name: "Admin Username"
       optional: true
-      description: "the admin user for login"
+      description: "Username for the web interface"
 
     - id: admin_password
-      type: string
-      name: "admin user password"
+      type: secret
+      name: "Admin Password"
       optional: true
-      description: "the admin user password for login"
+      description: "Password for the web interface"
 
 locales:
     zh:

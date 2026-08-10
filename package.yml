@@ -1,0 +1,20 @@
+package: cloud.lazycat.app.transmission
+version: 4.1.0
+name: Transmission
+description: 一个快速、简单且免费的 BitTorrent 客户端。
+min_os_version: 1.5.0
+homepage: https://transmissionbt.com
+author: transmissionbt
+unsupported_platforms:
+  - ios
+  - android
+permissions:
+  required:
+    - net.internet
+locales:
+  zh:
+    name: Transmission
+    description: 一个快速、简单且免费的 BitTorrent 客户端。
+  en:
+    name: Transmission
+    description: A fast, simple, and free BitTorrent client.

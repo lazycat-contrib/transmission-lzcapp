@@ -1,0 +1,43 @@
+version: 1
+
+project:
+  root: .
+  build_config: lzc-build.yml
+  package_file: package.yml
+  output: output/application.lpk
+  target_arch: amd64
+
+update:
+  strategy: publish
+  allow_downgrade: false
+  version_source:
+    type: image
+    image: transmission
+
+build:
+  run_buildscript: false
+
+images:
+  - id: transmission
+    target: service
+    service: transmission
+    source: docker.io/linuxserver/transmission
+    channel: stable
+    sort: semver
+    tag_regex: '^version-\d+\.\d+\.\d+-r\d+$'
+    version_regex: '^version-(?P<version>\d+\.\d+\.\d+)-r\d+$'
+    version_template: '{version}'
+    delivery:
+      mode: lazycat
+
+stores:
+  official:
+    enabled: true
+    skip_if_version_exists: true
+    retry:
+      enabled: false
+  private:
+    enabled: true
+    skip_if_version_exists: true
+    name: Transmission
+    summary: 由 GitHub Actions 自动发布
