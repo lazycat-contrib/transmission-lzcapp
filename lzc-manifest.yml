@@ -21,8 +21,8 @@ application:
 services:
   transmission:
     # docker.io/linuxserver/transmission:version-4.1.0-r0
-    # upstream: docker.io/linuxserver/transmission:version-4.1.3-r0
-    image: registry.lazycat.cloud/czyt/linuxserver/transmission:acbad31a61ec36b9
+    # upstream: docker.io/linuxserver/transmission:version-4.1.4-r0
+    image: registry.lazycat.cloud/czyt/linuxserver/transmission:81f735fafaa405a3
     environment:
       - PUID=1000
       - PGID=1000
